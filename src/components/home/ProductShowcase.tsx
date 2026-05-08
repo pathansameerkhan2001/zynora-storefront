@@ -102,7 +102,7 @@ export default function ProductShowcase() {
           style={{ width: "fit-content" }}
         >
           {marqueeProducts.map((product, idx) => (
-            <div key={`${product.id}-${idx}`} className="w-[320px] flex-shrink-0">
+            <div key={`${product.id}-${idx}`} className="w-[280px] md:w-[320px] flex-shrink-0">
               <ProductCard {...product} />
             </div>
           ))}
