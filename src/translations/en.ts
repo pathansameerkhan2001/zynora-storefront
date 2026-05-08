@@ -12,6 +12,8 @@ export const en = {
     snacks: "Snacks",
     natural: "100% Natural",
     labTested: "Lab Tested Quality",
+    cleanSafe: "Clean & Safe",
+    noPreservatives: "No Preservatives",
     addToCart: "Add to Cart",
     bestseller: "Bestseller",
     premium: "Premium",

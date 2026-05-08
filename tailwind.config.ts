@@ -11,9 +11,9 @@ const config: Config = {
       colors: {
         zynora: {
           emerald: "#0B2E26",
-          gold: "#C8A45D",
-          cream: "#F8F4EA",
-          beige: "#E8D9C0",
+          gold: "#D4B06A",
+          cream: "#F7F1E7",
+          beige: "#EADCC5",
         },
       },
       fontFamily: {
@@ -21,7 +21,11 @@ const config: Config = {
         inter: ["var(--font-inter)", "sans-serif"],
       },
       boxShadow: {
-        'premium': '0 10px 40px -10px rgba(11, 46, 38, 0.08)',
+        'premium': '0 20px 50px rgba(0, 0, 0, 0.05)',
+      },
+      animation: {
+        'spin-slow': 'spin 12s linear infinite',
+        'pulse-slow': 'pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       }
     },
   },

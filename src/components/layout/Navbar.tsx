@@ -77,7 +77,7 @@ export default function Navbar() {
         <div className="flex items-center gap-6 lg:gap-8">
           
           {/* Language Switcher */}
-          <div className="flex items-center gap-3 border-r border-[#0B2E26]/10 pr-6 mr-2 rtl:border-r-0 rtl:border-l rtl:pr-0 rtl:pl-6 rtl:mr-0 rtl:ml-2">
+          <div className="flex items-center gap-3 border-e border-[#0B2E26]/10 pe-6 me-2">
             <button 
               onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
               className="flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-[#0B2E26] hover:text-[#D4B06A] transition-all duration-500 uppercase group"

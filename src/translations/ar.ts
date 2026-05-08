@@ -12,6 +12,8 @@ export const ar = {
     snacks: "سناكس",
     natural: "طبيعي ١٠٠٪",
     labTested: "جودة مختبرة",
+    cleanSafe: "نقي وآمن",
+    noPreservatives: "بدون مواد حافظة",
     addToCart: "أضف إلى السلة",
     bestseller: "الأكثر مبيعاً",
     premium: "فاخر",

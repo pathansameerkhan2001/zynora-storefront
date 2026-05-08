@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Heart, Star, Plus, Minus } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ProductProps {
   id: string;
@@ -26,6 +27,7 @@ export default function ProductCard({
   image,
   badge
 }: ProductProps) {
+  const { t } = useLanguage();
   const [quantity, setQuantity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -39,7 +41,7 @@ export default function ProductCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Badges & Wishlist */}
-      <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
+      <div className="absolute top-6 start-6 end-6 flex justify-between items-start z-10">
         {badge ? (
           <span className="bg-zynora-gold text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
             {badge}
@@ -70,7 +72,7 @@ export default function ProductCard({
 
           {/* 2. Magical Escaping Glow (Between Lid and Body) */}
           <div 
-            className={`absolute top-[28%] left-1/2 -translate-x-1/2 w-24 h-6 bg-gradient-to-b from-[#FFD700] to-[#C8A45D] blur-[12px] z-15 rounded-full mix-blend-screen transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isHovered ? 'opacity-80 scale-125 translate-y-[-5px]' : 'opacity-0 scale-50 translate-y-0'}`}
+            className={`absolute top-[28%] left-1/2 -translate-x-1/2 w-24 h-6 bg-gradient-to-b from-[#FFD700] to-zynora-gold blur-[12px] z-15 rounded-full mix-blend-screen transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isHovered ? 'opacity-80 scale-125 translate-y-[-5px]' : 'opacity-0 scale-50 translate-y-0'}`}
           />
 
           {/* 3. Jar Lid (Top 28%) - Lifts up and tilts slightly */}
@@ -130,7 +132,7 @@ export default function ProductCard({
 
             {/* Add to Cart */}
             <button className="flex-1 bg-zynora-emerald text-white py-3 rounded-full text-sm font-medium tracking-wide hover:bg-zynora-gold transition-colors duration-300 shadow-md">
-              Add to Cart
+              {t.common.addToCart}
             </button>
           </div>
         </div>

@@ -58,9 +58,9 @@ export default function ProductShowcase() {
     <section className="py-20 bg-zynora-cream relative overflow-hidden">
       
       {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40">
-        <div className={`absolute top-[10%] ${isRTL ? 'left-[-5%]' : 'right-[-5%]'} w-[400px] h-[400px] bg-[#D4B06A]/10 rounded-full blur-[100px]`} />
-        <div className={`absolute bottom-[10%] ${isRTL ? 'right-[-5%]' : 'left-[-5%]'} w-[400px] h-[400px] bg-[#0B2E26]/5 rounded-full blur-[100px]`} />
+      <div className="absolute top-0 start-0 w-full h-full pointer-events-none opacity-40">
+        <div className="absolute top-[10%] end-[-5%] w-[400px] h-[400px] bg-zynora-gold/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[10%] start-[-5%] w-[400px] h-[400px] bg-zynora-emerald/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10 mb-16">
@@ -72,16 +72,16 @@ export default function ProductShowcase() {
             transition={{ duration: 1 }}
             className="max-w-2xl"
           >
-            <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-[#0B2E26] mb-4">
+            <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-zynora-emerald mb-4 rtl:tracking-normal">
               {t.showcase.heading}
             </h2>
-            <p className="text-[#0B2E26]/60 text-base font-light leading-relaxed">
+            <p className="text-zynora-emerald/60 text-base font-light leading-relaxed">
               {t.showcase.subtext}
             </p>
           </motion.div>
           <motion.button 
             whileHover={{ scale: 1.05 }}
-            className="text-[#D4B06A] font-bold uppercase tracking-[0.2em] text-[10px] pb-1.5 border-b-2 border-[#D4B06A] hover:text-[#0B2E26] hover:border-[#0B2E26] transition-all duration-500"
+            className="text-zynora-gold font-bold uppercase tracking-[0.2em] text-[10px] pb-1.5 border-b-2 border-zynora-gold hover:text-zynora-emerald hover:border-zynora-emerald transition-all duration-500"
           >
             {t.showcase.shopAll}
           </motion.button>
@@ -109,8 +109,8 @@ export default function ProductShowcase() {
         </motion.div>
 
         {/* Edge Overlays */}
-        <div className={`absolute top-0 left-0 h-full w-[150px] bg-gradient-to-r from-[#F7F1E7] to-transparent z-20 pointer-events-none`} />
-        <div className={`absolute top-0 right-0 h-full w-[150px] bg-gradient-to-l from-[#F7F1E7] to-transparent z-20 pointer-events-none`} />
+        <div className="absolute top-0 start-0 h-full w-[150px] bg-gradient-to-r from-zynora-cream to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 end-0 h-full w-[150px] bg-gradient-to-l from-zynora-cream to-transparent z-20 pointer-events-none" />
       </div>
 
     </section>

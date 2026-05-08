@@ -4,9 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Heart, Star, Leaf, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Product Data - Updated with EXACT double-extension filenames currently on your disk
-const products = [
+const productsData = [
   {
     id: 1,
     name: "Talbina",
@@ -89,12 +90,18 @@ const products = [
   },
 ];
 
-const categories = ["All", "Wellness Blends", "Seeds", "Snacks"];
-
 export default function ShopPage() {
+  const { t, isRTL } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredProducts = products.filter(
+  const categories = [
+    { id: "All", label: t.common.all },
+    { id: "Wellness Blends", label: t.common.wellnessBlends },
+    { id: "Seeds", label: t.common.seeds },
+    { id: "Snacks", label: t.common.snacks }
+  ];
+
+  const filteredProducts = productsData.filter(
     (product) => activeCategory === "All" || product.category === activeCategory
   );
 
@@ -109,7 +116,7 @@ export default function ShopPage() {
             opacity: [0.1, 0.2, 0.1]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 right-[-5%] w-[600px] h-[600px] bg-[#D4B06A]/10 rounded-full blur-[120px]" 
+          className="absolute top-1/4 end-[-5%] w-[600px] h-[600px] bg-[#D4B06A]/10 rounded-full blur-[120px]" 
         />
         <motion.div 
           animate={{ 
@@ -117,7 +124,7 @@ export default function ShopPage() {
             opacity: [0.05, 0.1, 0.05]
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-1/4 left-[-10%] w-[500px] h-[500px] bg-[#0B2E26]/5 rounded-full blur-[100px]" 
+          className="absolute bottom-1/4 start-[-10%] w-[500px] h-[500px] bg-[#0B2E26]/5 rounded-full blur-[100px]" 
         />
       </div>
 
@@ -131,15 +138,21 @@ export default function ShopPage() {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center justify-center gap-2 mb-6">
-              <Sparkles className="w-4 h-4 text-[#D4B06A]" />
-              <span className="text-[12px] font-bold tracking-[0.4em] uppercase text-[#D4B06A]">The Ritual Collection</span>
-              <Sparkles className="w-4 h-4 text-[#D4B06A]" />
+              <Sparkles className="w-4 h-4 text-zynora-gold" />
+              <span className="text-[12px] font-bold tracking-[0.4em] uppercase text-zynora-gold rtl:tracking-normal">
+                {t.common.theRitualCollection}
+              </span>
+              <Sparkles className="w-4 h-4 text-zynora-gold" />
             </div>
-            <h1 className="font-playfair text-6xl md:text-7xl lg:text-8xl font-bold text-[#0B2E26] mb-8 leading-[1.1]">
-              Crafted For<br />Everyday Luxury.
+            <h1 className="font-playfair text-6xl md:text-7xl lg:text-8xl font-bold text-zynora-emerald mb-8 leading-[1.1] rtl:tracking-normal">
+              {isRTL ? (
+                <>إتقان<br />للفخامة اليومية.</>
+              ) : (
+                <>Crafted For<br />Everyday Luxury.</>
+              )}
             </h1>
-            <p className="text-lg md:text-xl text-[#06231D]/60 font-light max-w-2xl mx-auto leading-relaxed">
-              Discover premium wellness blends made with real ingredients, traditional nutrition, and modern refinement.
+            <p className="text-lg md:text-xl text-zynora-emerald/60 font-light max-w-2xl mx-auto leading-relaxed">
+              {t.shop.heroSubtext}
             </p>
           </motion.div>
         </div>
@@ -150,19 +163,19 @@ export default function ShopPage() {
         <div className="flex flex-wrap items-center justify-center gap-6">
           {categories.map((category) => (
             <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
               className={`relative px-10 py-3.5 rounded-full text-[12px] font-bold tracking-[0.25em] uppercase transition-all duration-700 overflow-hidden ${
-                activeCategory === category
-                  ? "text-[#F7F1E7]"
-                  : "text-[#0B2E26] bg-white/30 backdrop-blur-md border border-[#0B2E26]/5 hover:border-[#D4B06A]/40"
+                activeCategory === category.id
+                  ? "text-zynora-cream"
+                  : "text-zynora-emerald bg-white/30 backdrop-blur-md border border-zynora-emerald/5 hover:border-zynora-gold/40"
               }`}
             >
-              <span className="relative z-10">{category}</span>
-              {activeCategory === category && (
+              <span className="relative z-10">{category.label}</span>
+              {activeCategory === category.id && (
                 <motion.div 
                   layoutId="activeFilter"
-                  className="absolute inset-0 bg-[#0B2E26] z-0"
+                  className="absolute inset-0 bg-zynora-emerald z-0"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -196,15 +209,15 @@ export default function ShopPage() {
                   <div className="relative rounded-[32px] bg-white/40 backdrop-blur-xl border border-white/20 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.03)] group-hover:shadow-[0_40px_80px_rgba(212,176,106,0.12)] transition-all duration-700 p-4">
                     
                     {/* Premium Tag */}
-                    <div className="absolute top-8 left-8 z-20">
-                      <span className="px-5 py-2 bg-[#0B2E26] text-[#F7F1E7] text-[10px] font-bold tracking-[0.25em] uppercase rounded-full shadow-lg">
+                    <div className="absolute top-8 start-8 z-20">
+                      <span className="px-5 py-2 bg-zynora-emerald text-zynora-cream text-[10px] font-bold tracking-[0.25em] uppercase rounded-full shadow-lg">
                         {product.badge}
                       </span>
                     </div>
 
                     {/* Wishlist Heart */}
-                    <button className="absolute top-8 right-8 z-20 p-3 rounded-full bg-white/60 backdrop-blur-md border border-white/20 text-[#0B2E26] hover:text-[#D4B06A] hover:bg-white transition-all duration-500 shadow-sm group/heart">
-                      <Heart className="w-4 h-4 stroke-[1.5] group-hover/heart:fill-[#D4B06A] transition-all" />
+                    <button className="absolute top-8 end-8 z-20 p-3 rounded-full bg-white/60 backdrop-blur-md border border-white/20 text-zynora-emerald hover:text-zynora-gold hover:bg-white transition-all duration-500 shadow-sm group/heart">
+                      <Heart className="w-4 h-4 stroke-[1.5] group-hover/heart:fill-zynora-gold transition-all" />
                     </button>
 
                     {/* IMAGE CONTAINER */}
@@ -221,9 +234,9 @@ export default function ShopPage() {
 
                     {/* Add to Cart Overlay */}
                     <div className="absolute inset-x-8 bottom-8 translate-y-[130%] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] z-30">
-                      <button className="w-full py-4 bg-[#0B2E26] text-[#F7F1E7] text-[12px] font-bold tracking-[0.3em] uppercase rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-[#0B2E26]/20 hover:bg-[#D4B06A] transition-colors duration-500">
+                      <button className="w-full py-4 bg-zynora-emerald text-zynora-cream text-[12px] font-bold tracking-[0.3em] uppercase rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-zynora-emerald/20 hover:bg-zynora-gold transition-colors duration-500">
                         <ShoppingBag className="w-4 h-4" />
-                        Add to Cart
+                        {t.common.addToCart}
                       </button>
                     </div>
 
@@ -235,36 +248,40 @@ export default function ShopPage() {
                   <div className="mt-10 flex flex-col gap-4 px-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Leaf className="w-4 h-4 text-[#D4B06A]" />
-                        <span className="text-[11px] font-bold text-[#D4B06A] tracking-[0.25em] uppercase">
+                        <Leaf className="w-4 h-4 text-zynora-gold" />
+                        <span className="text-[11px] font-bold text-zynora-gold tracking-[0.25em] uppercase">
                           {product.category}
                         </span>
                       </div>
-                      <div className="flex items-center gap-1.5 bg-white/50 px-3 py-1 rounded-full border border-[#0B2E26]/5">
-                        <Star className="w-3 h-3 fill-[#D4B06A] text-[#D4B06A]" />
-                        <span className="text-[11px] font-bold text-[#0B2E26]">{product.rating}</span>
+                      <div className="flex items-center gap-1.5 bg-white/50 px-3 py-1 rounded-full border border-zynora-emerald/5">
+                        <Star className="w-3 h-3 fill-zynora-gold text-zynora-gold" />
+                        <span className="text-[11px] font-bold text-zynora-emerald">{product.rating}</span>
                       </div>
                     </div>
 
-                    <h3 className="font-playfair text-3xl font-bold text-[#0B2E26] transition-colors duration-500 group-hover:text-[#D4B06A]">
+                    <h3 className="font-playfair text-3xl font-bold text-zynora-emerald transition-colors duration-500 group-hover:text-zynora-gold">
                       {product.name}
                     </h3>
 
-                    <p className="text-[15px] text-[#06231D]/50 font-light leading-relaxed line-clamp-2">
+                    <p className="text-[15px] text-zynora-emerald/50 font-light leading-relaxed line-clamp-2">
                       {product.description}
                     </p>
 
-                    <div className="mt-2 flex items-center justify-between pt-4 border-t border-[#0B2E26]/5">
-                      <div className="flex flex-col">
-                        <span className="text-[10px] text-[#0B2E26]/40 uppercase tracking-widest font-bold mb-1">Premium Price</span>
-                        <span className="text-2xl font-bold text-[#0B2E26]">₹{product.price}</span>
+                    <div className="mt-2 flex items-center justify-between pt-4 border-t border-zynora-emerald/5">
+                      <div className="flex flex-col items-start">
+                        <span className="text-[10px] text-zynora-emerald/40 uppercase tracking-widest font-bold mb-1">
+                          {isRTL ? 'السعر المميز' : 'Premium Price'}
+                        </span>
+                        <span className="text-2xl font-bold text-zynora-emerald">₹{product.price}</span>
                       </div>
                       <div className="flex flex-col items-end">
-                        <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#0B2E26]/60 uppercase tracking-widest">
+                        <span className="flex items-center gap-1.5 text-[10px] font-bold text-zynora-emerald/60 uppercase tracking-widest">
                           <Leaf className="w-3 h-3" />
-                          100% Natural
+                          {t.common.natural}
                         </span>
-                        <span className="text-[9px] text-[#0B2E26]/30 uppercase tracking-tighter mt-1">Lab Tested Quality</span>
+                        <span className="text-[9px] text-zynora-emerald/30 uppercase tracking-tighter mt-1">
+                          {t.common.labTested}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -277,7 +294,7 @@ export default function ShopPage() {
 
       {/* FOOTER CTA SECTION */}
       <section className="container mx-auto px-6 mt-40 z-10 relative">
-        <div className="relative rounded-[50px] bg-[#0B2E26] p-16 lg:p-28 overflow-hidden text-center">
+        <div className="relative rounded-[50px] bg-zynora-emerald p-16 lg:p-28 overflow-hidden text-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(212,176,106,0.1)_0%,transparent_70%)] pointer-events-none" />
           
           <motion.div
@@ -286,20 +303,22 @@ export default function ShopPage() {
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
           >
-            <h2 className="relative z-10 font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-[#F7F1E7] mb-10 leading-tight">
-              Experience Premium<br />Wellness Delivered.
+            <h2 className="relative z-10 font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-zynora-cream mb-10 leading-tight">
+              {t.shop.experiencePremium.split('\n').map((line, i) => (
+                <span key={i}>{line}<br /></span>
+              ))}
             </h2>
-            <p className="relative z-10 text-[#F7F1E7]/60 font-light max-w-2xl mx-auto mb-16 text-lg">
-              Join our exclusive wellness circle. Get early access to limited edition seasonal blends and organic harvests.
+            <p className="relative z-10 text-zynora-cream/60 font-light max-w-2xl mx-auto mb-16 text-lg">
+              {t.shop.joinCircle}
             </p>
             <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-6 max-w-xl mx-auto">
               <input 
                 type="email" 
-                placeholder="Enter your email" 
-                className="w-full px-10 py-5 bg-white/5 border border-white/10 rounded-full text-[#F7F1E7] placeholder:text-[#F7F1E7]/30 focus:outline-none focus:border-[#D4B06A] transition-all text-lg"
+                placeholder={t.shop.enterEmail} 
+                className="w-full px-10 py-5 bg-white/5 border border-white/10 rounded-full text-zynora-cream placeholder:text-zynora-cream/30 focus:outline-none focus:border-zynora-gold transition-all text-lg"
               />
-              <button className="w-full sm:w-auto px-12 py-5 bg-[#D4B06A] text-[#0B2E26] text-[14px] font-bold tracking-[0.3em] uppercase rounded-full hover:bg-[#F7F1E7] transition-all duration-700 shadow-xl shadow-[#D4B06A]/10">
-                Subscribe
+              <button className="w-full sm:w-auto px-12 py-5 bg-zynora-gold text-zynora-emerald text-[14px] font-bold tracking-[0.3em] uppercase rounded-full hover:bg-zynora-cream transition-all duration-700 shadow-xl shadow-zynora-gold/10 whitespace-nowrap">
+                {t.shop.subscribe}
               </button>
             </div>
           </motion.div>
