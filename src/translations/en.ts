@@ -1,0 +1,55 @@
+export const en = {
+  common: {
+    shop: "Shop",
+    about: "About",
+    contact: "Contact",
+    home: "Home",
+    search: "Search",
+    cart: "Cart",
+    all: "All",
+    wellnessBlends: "Wellness Blends",
+    seeds: "Seeds",
+    snacks: "Snacks",
+    natural: "100% Natural",
+    labTested: "Lab Tested Quality",
+    addToCart: "Add to Cart",
+    bestseller: "Bestseller",
+    premium: "Premium",
+    new: "New",
+    ourStory: "Our Story",
+    exploreCollection: "Explore Collection",
+    theRitualCollection: "The Ritual Collection",
+  },
+  hero: {
+    heading: "Made For How You Live.",
+    italicText: "Live.",
+    subtext: "Premium nutrition crafted with intention. Elevate your daily wellness ritual with our organic, lab-tested formulations.",
+  },
+  shop: {
+    heroHeading: "Crafted For Everyday Luxury.",
+    heroSubtext: "Discover premium wellness blends made with real ingredients, traditional nutrition, and modern refinement.",
+    subscribe: "Subscribe",
+    enterEmail: "Enter your email",
+    experiencePremium: "Experience Premium Wellness Delivered.",
+    joinCircle: "Join our exclusive wellness circle. Get early access to limited edition seasonal blends and organic harvests.",
+  },
+  whyZynora: {
+    badge: "Our Essence",
+    headingPart1: "Why ",
+    headingPart2: "ZYNORA?",
+    subtext: "We believe that true wellness begins with uncompromising quality. Every product is a testament to our dedication to purity, potency, and premium nutrition.",
+    reasons: [
+      "Real Ingredients, No Fillers",
+      "Traditional Wellness Wisdom",
+      "Premium Daily Nutrition",
+      "Rigorous Lab Testing",
+      "Honest & Transparent",
+      "Crafted with Intention",
+    ]
+  },
+  showcase: {
+    heading: "Curated Wellness",
+    subtext: "Explore our collection of premium, lab-tested formulations designed to elevate your daily routine.",
+    shopAll: "Shop All Products",
+  }
+};
